@@ -50,3 +50,104 @@ function onMobDespawn(mob)
         SetServerVariable("[SEA]IxAernDRG_PH", 0); -- Clear the variable because it is spawned!
     end;
 end;
+
+
+function chance(percentage)
+    return math.random() < percentage / 100
+    -- or equivalently, math.random() * 100 < percentage
+end
+
+function onMobDeath(mob, player)
+
+    mob = mob:getID();
+
+    --Ix'Aern drk PH in pos 1 Hume-Elvaan
+    local Ix_aern_drk_PH_pos1 = "16920660 16920661 16920662"
+    --Ix'Aern drk PH in pos 2 Elvaan-Galka
+    local Ix_aern_drk_PH_pos2 = "16920665 16920666 16920667"
+    --Ix'Aern drk PH in pos 3 Taru-Mithra
+    local Ix_aern_drk_PH_pos3 = "16920646 16920647 16920648"
+    --Ix'Aern drk PH in pos 4 Mithra-Hume
+    local Ix_aern_drk_PH_pos4 = "16920651 16920652 16920653"
+
+    local VanadielHour = VanadielHour();
+    local posi_drk = GetServerVariable("[POSI]Ix_aern_drk");
+
+    i = GetServerVariable("[PH]Ix_aern_drk");
+    -- print(i)
+
+    -- Ix'Aern DRK PH check
+    -- Check if Aw_aern are in the room with the ???
+    -- Set chance of gaining animosity at 50% no idea the real % of gain
+    if (posi_drk == 1) then
+        if string.find(Ix_aern_drk_PH_pos1, tostring(mob)) then
+            -- print(mob)
+            if (i == 3) then
+                player:messageSpecial(SHEER_ANIMOSITY);
+                if(VanadielHour % 4 == 0) then
+                    SetServerVariable("[PH]Ix_aern_drk", 0);
+                end
+            else
+                if chance(50) then -- set 50% chance of giving animosity
+                    i = i + 1; -- adds 1 to the kill count.
+                else
+                    i = i + 0; -- adds 1 to the kill count.
+                end
+                SetServerVariable("[PH]Ix_aern_drk", i); -- set server variable to what i value is.
+            end
+        end
+    elseif (posi_drk == 2) then
+        if string.find(Ix_aern_drk_PH_pos2, tostring(mob)) then
+            -- print(mob)
+            if (i == 3) then
+                player:messageSpecial(SHEER_ANIMOSITY);
+                if(VanadielHour % 4 == 0) then
+                    SetServerVariable("[PH]Ix_aern_drk", 0);
+                end
+            else
+                if chance(50) then -- set 50% chance of giving animosity
+                    i = i + 1; -- adds 1 to the kill count.
+                else
+                    i = i + 0; -- adds 1 to the kill count.
+                end
+                SetServerVariable("[PH]Ix_aern_drk", i); -- set server variable to what i value is.
+            end
+        end
+    elseif (posi_drk == 3) then
+        if string.find(Ix_aern_drk_PH_pos3, tostring(mob)) then
+            -- print(mob)
+            if (i == 3) then
+                player:messageSpecial(SHEER_ANIMOSITY);
+                if(VanadielHour % 4 == 0) then
+                    SetServerVariable("[PH]Ix_aern_drk", 0);
+                end
+            else
+                if chance(50) then -- set 50% chance of giving animosity
+                    i = i + 1; -- adds 1 to the kill count.
+                else
+                    i = i + 0; -- adds 1 to the kill count.
+                end
+                SetServerVariable("[PH]Ix_aern_drk", i); -- set server variable to what i value is.
+            end
+        end
+    elseif (posi_drk == 4) then
+        if string.find(Ix_aern_drk_PH_pos4, tostring(mob)) then
+            -- print(mob)
+            if (i == 3) then
+                player:messageSpecial(SHEER_ANIMOSITY);
+                if(VanadielHour % 4 == 0) then
+                    SetServerVariable("[PH]Ix_aern_drk", 0);
+                end
+            else
+                if chance(50) then-- set 50% chance of giving animosity
+                    i = i + 1; -- adds 1 to the kill count.
+                else
+                    i = i + 0; -- adds 1 to the kill count.
+                end
+                SetServerVariable("[PH]Ix_aern_drk", i); -- set server variable to what i value is.
+            end
+        end
+
+    end
+end
+

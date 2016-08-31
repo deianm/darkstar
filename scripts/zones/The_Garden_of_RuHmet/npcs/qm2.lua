@@ -22,26 +22,25 @@ end;
 -- onTrigger Action
 -----------------------------------
  
-function onTrigger(player,npc)
-    --[[
-    Kills = GetServerVariable("[PH]Ix_aern_drk");
-        --print(Kills)
+function onTrigger(player)
+    kills = GetServerVariable("[PH]Ix_aern_drk");
+        -- printf(kills)
     moba = GetMobByID(16921018);
     mobb = GetMobByID(16921019);
     mobc = GetMobByID(16921020);
-    if (Kills == 0) then 
+    if (kills == 0) then
         player:messageSpecial(UNKNOWN_PRESENCE);
-    elseif (Kills == 1) then
+    elseif (kills == 1) then
         player:messageSpecial(NONE_HOSTILE);
-    elseif (Kills == 2) then
-        player:messageSpecial(NONE_HOSTILE);--(SHEER_ANIMOSITY);
-    elseif (Kills == 3) then 
-        moba:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
-        SpawnMob(16921018):updateClaim(player);
-        mobb:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
-        SpawnMob(16921019):updateClaim(player);
-        mobc:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
-        SpawnMob(16921020):updateClaim(player);
+    elseif (kills == 2) then
+        player:messageSpecial(SHEER_ANIMOSITY);--(SHEER_ANIMOSITY);
+    elseif (kills >= 3) then
+        moba:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
+        SpawnMob(16921018,180):updateClaim(player);
+        mobb:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
+        SpawnMob(16921019,180):updateClaim(player);
+        mobc:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
+        SpawnMob(16921020,180):updateClaim(player);
         GetNPCByID(16921028):hideNPC(900);
             if (math.random(0,1) == 1) then -- random do select which item do drop. Will select one item 100% of the time.
                 SetDropRate(4397,1854,000);
@@ -49,7 +48,6 @@ function onTrigger(player,npc)
                 SetDropRate(4397,1902,000);
             end
     end
-    ]]--
 end;
 
 -----------------------------------
